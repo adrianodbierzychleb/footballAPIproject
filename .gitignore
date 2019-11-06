@@ -1,0 +1,4 @@
+/.idea/
+footballAPIproject.iml
+target/
+config/APIKey.java
