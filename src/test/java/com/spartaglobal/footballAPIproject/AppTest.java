@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.fasterxml.jackson.databind.util.TypeKey;
 import com.spartaglobal.footballAPIproject.HTTPServices.PlayerDetailsHTTPService;
+import com.spartaglobal.footballAPIproject.ParsingJSON.CreatingArrayListOfPlayerDetails;
 import com.spartaglobal.footballAPIproject.ParsingJSON.MappingPlayerDetailsFromJSONString;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,16 +25,21 @@ public class AppTest
      */
 
     private static MappingPlayerDetailsFromJSONString mappingPlayerDetailsFromJSONString = new MappingPlayerDetailsFromJSONString();
+    private static CreatingArrayListOfPlayerDetails creatingArrayListOfPlayerDetails = new CreatingArrayListOfPlayerDetails();
     //134793 ID Max value
     @BeforeClass
     public static void setup()
     {
         //playerDetailsHTTPService.executePlayerDetailsRequest("371");
+        creatingArrayListOfPlayerDetails.populateArray();
+
     }
 
     @Test
     public void test(){
-        Map<String, String> result = mappingPlayerDetailsFromJSONString.mapDetails("371");
+        List<Map> players = creatingArrayListOfPlayerDetails.getPlayerDetails();
+
+
         //System.out.println(result);
 //        List<String> keys = new ArrayList<>(result.keySet());
 //        for (int i = 0; i < keys.size() ; i++) {
@@ -44,13 +50,16 @@ public class AppTest
 //            System.out.println(entry.getKey() + " " + entry.getValue());
 //        }
 
-        Iterator it = result.entrySet().iterator();
-        while(it.hasNext())
-        {
-            Map.Entry pair = (Map.Entry)it.next();
-            System.out.println(pair.getKey() + " " + pair.getValue());
-            it.remove();
-        }
+        for (int i = 0; i < players.size(); i++) {
+            //Map<String, String> result = players.get(i);
 
+            Iterator it = players.get(i).entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+                System.out.println(pair.getKey() + " " + pair.getValue());
+                it.remove();
+            }
+            System.out.println("");
+        }
     }
 }
