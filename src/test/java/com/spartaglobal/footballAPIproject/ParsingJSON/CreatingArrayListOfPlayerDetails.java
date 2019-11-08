@@ -11,7 +11,7 @@ public class CreatingArrayListOfPlayerDetails {
 
     public void populateArray()
     {
-        String lowerBoundryOfPlayerID = "364";
+        String lowerBoundryOfPlayerID = "354";
         String upperBoundryOfPlayerID = "372";
 
         for (Integer i = Integer.parseInt(lowerBoundryOfPlayerID); i <= Integer.parseInt(upperBoundryOfPlayerID); i++)
